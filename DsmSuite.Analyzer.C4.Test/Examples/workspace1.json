@@ -1,0 +1,488 @@
+{
+  "configuration" : { },
+  "description" : "Description",
+  "documentation" : { },
+  "id" : 0,
+  "model" : {
+    "deploymentNodes" : [ {
+      "containerInstances" : [ {
+        "containerId" : "3",
+        "deploymentGroups" : [ "Default" ],
+        "environment" : "Development",
+        "id" : "24",
+        "instanceId" : 1,
+        "properties" : {
+          "structurizr.dsl.identifier" : "webapp1instance"
+        },
+        "relationships" : [ {
+          "description" : "Makes API calls to",
+          "destinationId" : "25",
+          "id" : "26",
+          "linkedRelationshipId" : "21",
+          "sourceId" : "24",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Reads from and writes to",
+          "destinationId" : "30",
+          "id" : "32",
+          "linkedRelationshipId" : "11",
+          "sourceId" : "24"
+        } ],
+        "tags" : "Container Instance"
+      }, {
+        "containerId" : "6",
+        "deploymentGroups" : [ "Default" ],
+        "environment" : "Development",
+        "id" : "25",
+        "instanceId" : 1,
+        "properties" : {
+          "structurizr.dsl.identifier" : "webapp2instance"
+        },
+        "relationships" : [ {
+          "description" : "Database",
+          "destinationId" : "33",
+          "id" : "34",
+          "linkedRelationshipId" : "15",
+          "sourceId" : "25"
+        } ],
+        "tags" : "Container Instance"
+      } ],
+      "environment" : "Development",
+      "id" : "23",
+      "instances" : "1",
+      "name" : "Web Server 1",
+      "properties" : {
+        "structurizr.dsl.identifier" : "webserver1"
+      },
+      "tags" : "Element,Deployment Node"
+    }, {
+      "containerInstances" : [ {
+        "containerId" : "9",
+        "deploymentGroups" : [ "Default" ],
+        "environment" : "Development",
+        "id" : "28",
+        "instanceId" : 1,
+        "properties" : {
+          "structurizr.dsl.identifier" : "webapp3instance"
+        },
+        "relationships" : [ {
+          "description" : "Database",
+          "destinationId" : "30",
+          "id" : "31",
+          "linkedRelationshipId" : "18",
+          "sourceId" : "28"
+        }, {
+          "description" : "Database",
+          "destinationId" : "33",
+          "id" : "35",
+          "linkedRelationshipId" : "19",
+          "sourceId" : "28"
+        } ],
+        "tags" : "Container Instance"
+      } ],
+      "environment" : "Development",
+      "id" : "27",
+      "instances" : "1",
+      "name" : "Web Server 2",
+      "properties" : {
+        "structurizr.dsl.identifier" : "webserver2"
+      },
+      "tags" : "Element,Deployment Node"
+    }, {
+      "containerInstances" : [ {
+        "containerId" : "10",
+        "deploymentGroups" : [ "Default" ],
+        "environment" : "Development",
+        "id" : "30",
+        "instanceId" : 1,
+        "properties" : {
+          "structurizr.dsl.identifier" : "database1instance"
+        },
+        "tags" : "Container Instance"
+      }, {
+        "containerId" : "12",
+        "deploymentGroups" : [ "Default" ],
+        "environment" : "Development",
+        "id" : "33",
+        "instanceId" : 1,
+        "properties" : {
+          "structurizr.dsl.identifier" : "database2instance"
+        },
+        "tags" : "Container Instance"
+      } ],
+      "environment" : "Development",
+      "id" : "29",
+      "instances" : "1",
+      "name" : "Database Server",
+      "properties" : {
+        "structurizr.dsl.identifier" : "databaseserver"
+      },
+      "tags" : "Element,Deployment Node"
+    } ],
+    "people" : [ {
+      "id" : "1",
+      "location" : "Unspecified",
+      "name" : "User",
+      "properties" : {
+        "structurizr.dsl.identifier" : "user"
+      },
+      "relationships" : [ {
+        "description" : "Uses",
+        "destinationId" : "3",
+        "id" : "4",
+        "properties" : {
+          "structurizr.dsl.identifier" : "8cc61190-da56-4809-952f-e8257dc5fa5d"
+        },
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Uses",
+        "destinationId" : "2",
+        "id" : "5",
+        "linkedRelationshipId" : "4",
+        "sourceId" : "1"
+      }, {
+        "description" : "Uses",
+        "destinationId" : "6",
+        "id" : "14",
+        "properties" : {
+          "structurizr.dsl.identifier" : "79b54ab2-9c16-42f4-a859-efbd34733a50"
+        },
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person"
+    }, {
+      "group" : "Backoffice users",
+      "id" : "13",
+      "location" : "Unspecified",
+      "name" : "Admin",
+      "properties" : {
+        "structurizr.dsl.identifier" : "admin"
+      },
+      "relationships" : [ {
+        "description" : "Uses",
+        "destinationId" : "9",
+        "id" : "16",
+        "properties" : {
+          "structurizr.dsl.identifier" : "81506659-92d2-48ea-892a-a37851d630be"
+        },
+        "sourceId" : "13",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Uses",
+        "destinationId" : "2",
+        "id" : "17",
+        "linkedRelationshipId" : "16",
+        "sourceId" : "13"
+      } ],
+      "tags" : "Element,Person"
+    } ],
+    "softwareSystems" : [ {
+      "containers" : [ {
+        "documentation" : { },
+        "id" : "3",
+        "name" : "Web Application 1",
+        "properties" : {
+          "structurizr.dsl.identifier" : "webapp1"
+        },
+        "relationships" : [ {
+          "description" : "Reads from and writes to",
+          "destinationId" : "10",
+          "id" : "11",
+          "properties" : {
+            "structurizr.dsl.identifier" : "c9c494b6-973d-4e3b-a2a2-4e358a56ce90"
+          },
+          "sourceId" : "3",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Makes API calls to",
+          "destinationId" : "7",
+          "id" : "20",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ca8e06d8-6364-4233-affe-ba43c57b186a"
+          },
+          "sourceId" : "3",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Makes API calls to",
+          "destinationId" : "6",
+          "id" : "21",
+          "linkedRelationshipId" : "20",
+          "sourceId" : "3",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Makes API calls to",
+          "destinationId" : "8",
+          "id" : "22",
+          "properties" : {
+            "structurizr.dsl.identifier" : "4d659cc3-7b9e-4a07-bd1a-c7a51c7067c8"
+          },
+          "sourceId" : "3",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "7",
+          "name" : "Users Controller",
+          "properties" : {
+            "structurizr.dsl.identifier" : "userscontroller"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "8",
+          "name" : "Permissions Controller",
+          "properties" : {
+            "structurizr.dsl.identifier" : "permissionscontroller"
+          },
+          "tags" : "Element,Component"
+        } ],
+        "documentation" : { },
+        "id" : "6",
+        "name" : "Web Application 2",
+        "properties" : {
+          "structurizr.dsl.identifier" : "webapp2"
+        },
+        "relationships" : [ {
+          "description" : "Database",
+          "destinationId" : "12",
+          "id" : "15",
+          "properties" : {
+            "structurizr.dsl.identifier" : "80852e0c-8d74-4b29-bcb3-c8389c7c1d89"
+          },
+          "sourceId" : "6",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "documentation" : { },
+        "id" : "9",
+        "name" : "Web Application 3",
+        "properties" : {
+          "structurizr.dsl.identifier" : "webapp3"
+        },
+        "relationships" : [ {
+          "description" : "Database",
+          "destinationId" : "10",
+          "id" : "18",
+          "properties" : {
+            "structurizr.dsl.identifier" : "04b93a80-0100-4208-a463-798e29a59534"
+          },
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Database",
+          "destinationId" : "12",
+          "id" : "19",
+          "properties" : {
+            "structurizr.dsl.identifier" : "5b8f8abc-057f-4ebb-b834-28dcc6dfa22c"
+          },
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "documentation" : { },
+        "id" : "10",
+        "name" : "Database1",
+        "properties" : {
+          "structurizr.dsl.identifier" : "database1"
+        },
+        "tags" : "Element,Container"
+      }, {
+        "documentation" : { },
+        "id" : "12",
+        "name" : "Database2",
+        "properties" : {
+          "structurizr.dsl.identifier" : "database2"
+        },
+        "tags" : "Element,Container"
+      } ],
+      "documentation" : { },
+      "id" : "2",
+      "location" : "Unspecified",
+      "name" : "Software System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "softwaresystem"
+      },
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "Name",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlIHsKCiAgICBtb2RlbCB7CiAgICAgICAgdXNlciA9IHBlcnNvbiAiVXNlciIKICAgICAgICAKICAgICAgICBzb2Z0d2FyZVN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgd2ViYXBwMSA9IGNvbnRhaW5lciAiV2ViIEFwcGxpY2F0aW9uIDEiIHsKICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAjIFJlbGF0aW9uc2hpcCBmcm9tIHBhcmVudCB0byB0aGlzCiAgICAgICAgICAgICAgICB1c2VyIC0+IHRoaXMgIlVzZXMiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgCiAgICAgICAgICAgIHdlYmFwcDIgPSBjb250YWluZXIgIldlYiBBcHBsaWNhdGlvbiAyIiB7CiAgICAgICAgICAgICAgICB1c2Vyc0NvbnRyb2xsZXIgPSBjb21wb25lbnQgIlVzZXJzIENvbnRyb2xsZXIiCiAgICAgICAgICAgICAgICBwZXJtaXNzaW9uc0NvbnRyb2xsZXIgPSBjb21wb25lbnQgIlBlcm1pc3Npb25zIENvbnRyb2xsZXIiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgCiAgICAgICAgICAgIHdlYmFwcDMgPSBjb250YWluZXIgIldlYiBBcHBsaWNhdGlvbiAzIgogICAgICAgICAgICAKICAgICAgICAgICAgZGF0YWJhc2UxID0gY29udGFpbmVyICJEYXRhYmFzZTEiIHsKICAgICAgICAgICAgICAgIHdlYmFwcDEgLT4gdGhpcyAiUmVhZHMgZnJvbSBhbmQgd3JpdGVzIHRvIgogICAgICAgICAgICB9CiAgICAgICAgICAgIAogICAgICAgICAgICBkYXRhYmFzZTIgPSBjb250YWluZXIgIkRhdGFiYXNlMiIKICAgICAgICB9CgogICAgICAgIGdyb3VwICJCYWNrb2ZmaWNlIHVzZXJzIiB7CgkJCWFkbWluID0gcGVyc29uICJBZG1pbiIKCQl9CiAgICAgICAgCiAgICAgICAgIyBSZWxhdGlvbnNoaXAgY3JlYXRlZCBvdXRzaWRlCiAgICAgICAgdXNlciAtPiB3ZWJhcHAyICJVc2VzIgogICAgICAgIHdlYmFwcDIgLT4gZGF0YWJhc2UyICJEYXRhYmFzZSIKICAgICAgICAKICAgICAgICBhZG1pbiAtPiB3ZWJhcHAzICJVc2VzIgogICAgICAgIHdlYmFwcDMgLT4gZGF0YWJhc2UxICJEYXRhYmFzZSIKICAgICAgICB3ZWJhcHAzIC0+IGRhdGFiYXNlMiAiRGF0YWJhc2UiCgogICAgICAgIHdlYmFwcDEgLT4gdXNlcnNDb250cm9sbGVyICJNYWtlcyBBUEkgY2FsbHMgdG8iICJKU09OL0hUVFBTIgogICAgICAgIHdlYmFwcDEgLT4gcGVybWlzc2lvbnNDb250cm9sbGVyICJNYWtlcyBBUEkgY2FsbHMgdG8iICJKU09OL0hUVFBTIgoKICAgICAgICAjIERlcGxveW1lbnQgbm9kZXMKICAgICAgICBkZXBsb3ltZW50RW52aXJvbm1lbnQgPSBkZXBsb3ltZW50RW52aXJvbm1lbnQgIkRldmVsb3BtZW50IiB7CgkJCXdlYlNlcnZlcjEgPSBkZXBsb3ltZW50Tm9kZSAiV2ViIFNlcnZlciAxIiB7CgkJCQl3ZWJhcHAxSW5zdGFuY2UgPSBjb250YWluZXJJbnN0YW5jZSB3ZWJhcHAxCgkJCQkKCQkJCXdlYmFwcDJJbnN0YW5jZSA9IGNvbnRhaW5lckluc3RhbmNlIHdlYmFwcDIKCQkJfQoJCQkKCQkJd2ViU2VydmVyMiA9IGRlcGxveW1lbnROb2RlICJXZWIgU2VydmVyIDIiIHsKCQkJCXdlYmFwcDNJbnN0YW5jZSA9IGNvbnRhaW5lckluc3RhbmNlIHdlYmFwcDMKCQkJfQoJCQkKCQkJZGF0YWJhc2VTZXJ2ZXIgPSBkZXBsb3ltZW50Tm9kZSAiRGF0YWJhc2UgU2VydmVyIiB7CgkJCQlkYXRhYmFzZTFJbnN0YW5jZSA9IGNvbnRhaW5lckluc3RhbmNlIGRhdGFiYXNlMQoJCQkJZGF0YWJhc2UySW5zdGFuY2UgPSBjb250YWluZXJJbnN0YW5jZSBkYXRhYmFzZTIKCQkJfQoJCX0KICAgICAgICAKICAgICAgICAKICAgIH0KCiAgICB2aWV3cyB7CiAgICAgICAgc3lzdGVtQ29udGV4dCBzb2Z0d2FyZVN5c3RlbSB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgc29mdHdhcmVTeXN0ZW0gewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IHdlYmFwcDEgewoJCQlpbmNsdWRlICoKCQkJYXV0b2xheW91dCBscgoJCX0KCQkKCQljb21wb25lbnQgd2ViYXBwMiB7CgkJCWluY2x1ZGUgKgoJCQlhdXRvbGF5b3V0IGxyCgkJfQoJCQoJCWNvbXBvbmVudCB3ZWJhcHAzIHsKCQkJaW5jbHVkZSAqCgkJCWF1dG9sYXlvdXQgbHIKCQl9CgogICAgICAgIHRoZW1lIGRlZmF1bHQKICAgIH0KCn0K"
+  },
+  "views" : {
+    "componentViews" : [ {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "3",
+      "externalContainerBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Component-001",
+      "order" : 3
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "6",
+      "elements" : [ {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "7",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Component-002",
+      "order" : 4,
+      "relationships" : [ {
+        "id" : "20"
+      }, {
+        "id" : "22"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "9",
+      "externalContainerBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Component-003",
+      "order" : 5
+    } ],
+    "configuration" : {
+      "branding" : { },
+      "styles" : { },
+      "terminology" : { },
+      "themes" : [ "https://static.structurizr.com/themes/default/theme.json" ]
+    },
+    "containerViews" : [ {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "12",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Container-001",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "11"
+      }, {
+        "id" : "14"
+      }, {
+        "id" : "15"
+      }, {
+        "id" : "16"
+      }, {
+        "id" : "18"
+      }, {
+        "id" : "19"
+      }, {
+        "id" : "21"
+      }, {
+        "id" : "4"
+      } ],
+      "softwareSystemId" : "2"
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "generatedKey" : true,
+      "key" : "SystemContext-001",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "17"
+      }, {
+        "id" : "5"
+      } ],
+      "softwareSystemId" : "2"
+    } ]
+  }
+}
