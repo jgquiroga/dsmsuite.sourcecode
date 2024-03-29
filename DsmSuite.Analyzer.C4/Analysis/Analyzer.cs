@@ -3,10 +3,8 @@ using DsmSuite.Analyzer.Model.Interface;
 using DsmSuite.Common.Util;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Text.Json;
-using System.Xml.Linq;
 
 namespace DsmSuite.Analyzer.C4.Analysis
 {
@@ -54,7 +52,7 @@ namespace DsmSuite.Analyzer.C4.Analysis
             foreach (var person in people.EnumerateArray())
             {
                 var id = person.GetProperty("id").GetString();
-                var name = person.TryGetProperty("name", out var nameElement) ? nameElement.GetString() : $"$Person{id}";
+                var name = GetElementName(person);
                 var type = person.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "Person";
 
                 if (parentName != null)
@@ -82,7 +80,7 @@ namespace DsmSuite.Analyzer.C4.Analysis
             foreach (var softwareSystem in softwareSystems.EnumerateArray())
             {
                 var id = softwareSystem.GetProperty("id").GetString();
-                var name = softwareSystem.TryGetProperty("name", out var nameElement) ? nameElement.GetString() : $"$SoftwareSystem{id}";
+                var name = GetElementName(softwareSystem);
                 var type = softwareSystem.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "SoftwareSystem";
 
                 if (parentName != null)
@@ -111,7 +109,7 @@ namespace DsmSuite.Analyzer.C4.Analysis
             foreach (var container in containers.EnumerateArray())
             {
                 var id = container.GetProperty("id").GetString();
-                var name = container.TryGetProperty("name", out var nameElement) ? nameElement.GetString() : $"$Container{id}";
+                var name = GetElementName(container);
                 var type = container.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "Container";
 
                 if (parentName != null)
@@ -140,7 +138,7 @@ namespace DsmSuite.Analyzer.C4.Analysis
             foreach (var component in components.EnumerateArray())
             {
                 var id = component.GetProperty("id").GetString();
-                var name = component.TryGetProperty("name", out var nameElement) ? nameElement.GetString() : $"$Component{id}";
+                var name = GetElementName(component);
                 var type = component.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "Component";
 
                 if (parentName != null)
@@ -169,7 +167,7 @@ namespace DsmSuite.Analyzer.C4.Analysis
             foreach (var codeElement in codeElements.EnumerateArray())
             {
                 var id = codeElement.GetProperty("id").GetString();
-                var name = codeElement.TryGetProperty("name", out var nameElement) ? nameElement.GetString() : $"$Code{id}";
+                var name = GetElementName(codeElement);
                 var type = codeElement.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "CodeElement";
 
                 if (parentName != null)
@@ -196,7 +194,7 @@ namespace DsmSuite.Analyzer.C4.Analysis
             foreach (var child in children.EnumerateArray())
             {
                 var id = child.GetProperty("id").GetString();
-                var name = child.TryGetProperty("name", out var nameElement) ? nameElement.GetString() : $"$Child{id}";
+                var name = GetElementName(child);
                 var type = child.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "Child";
 
                 if (parentName != null)
@@ -212,7 +210,42 @@ namespace DsmSuite.Analyzer.C4.Analysis
                 // Recursively add children
                 FindChildElements(child, name);
 
+                FindContainerInstances(child, name);
+
+                FindInfrastructureNodes(child, name);
+
                 FindRelationships(child);
+            }
+        }
+
+        private void FindInfrastructureNodes(JsonElement parent, string parentName)
+        {
+            if (!parent.TryGetProperty("infrastructureNodes", out var infrastructureNodes))
+            {
+                return;
+            }
+
+            foreach (var infrastructureNode in infrastructureNodes.EnumerateArray())
+            {
+                var id = infrastructureNode.GetProperty("id").GetString();
+                var name = GetElementName(infrastructureNode);
+                var type = infrastructureNode.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "InfrastructureNode";
+
+                if (parentName != null)
+                {
+                    name = $"{parentName}.{name}";
+                }
+
+                Logger.LogUserMessage($"Infrastructure node: {name}");
+
+                _model.AddElement(name, type, null);
+                _elements.Add(id, new C4Element { Id = id, Name = name });
+
+                FindChildElements(infrastructureNode, name);
+
+                FindContainerInstances(infrastructureNode, name);
+
+                FindRelationships(infrastructureNode);
             }
         }
 
@@ -226,8 +259,11 @@ namespace DsmSuite.Analyzer.C4.Analysis
             foreach (var deploymentNode in deploymentNodes.EnumerateArray())
             {
                 var id = deploymentNode.GetProperty("id").GetString();
-                var name = deploymentNode.TryGetProperty("name", out var nameElement) ? nameElement.GetString() : $"$DeploymentNode{id}";
+                var name = GetElementName(deploymentNode); 
                 var type = deploymentNode.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "DeploymentNode";
+                var environment = deploymentNode.TryGetProperty("environment", out var environmentElement) ? environmentElement.GetString() : "EnvironmentDefault";
+                
+                name = $"Deployments.{environment}.{name}";
 
                 if (parentName != null)
                 {
@@ -243,6 +279,8 @@ namespace DsmSuite.Analyzer.C4.Analysis
 
                 FindContainerInstances(deploymentNode, name);
 
+                FindInfrastructureNodes(deploymentNode, name);
+
                 FindRelationships(deploymentNode);
             }
         }
@@ -257,8 +295,9 @@ namespace DsmSuite.Analyzer.C4.Analysis
             foreach (var containerInstance in containerInstances.EnumerateArray())
             {
                 var id = containerInstance.GetProperty("id").GetString();
-                var name = containerInstance.TryGetProperty("name", out var nameElement) ? nameElement.GetString() : $"$ContainerInstance{id}";
+                var name = GetElementName(containerInstance);
                 var type = containerInstance.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "ContainerInstance";
+                var containerId = containerInstance.TryGetProperty("containerId", out var containerIdElement) ? containerIdElement.GetString() : null;
 
                 if (parentName != null)
                 {
@@ -269,6 +308,16 @@ namespace DsmSuite.Analyzer.C4.Analysis
 
                 _model.AddElement(name, type, null);
                 _elements.Add(id, new C4Element { Id = id, Name = name });
+
+                if (containerId != null)
+                {
+                    _relationships.Add(new C4Relationship
+                    {
+                        SourceId = containerId,
+                        DestinationId = id,
+                        Description = "InstanceOf"
+                    });
+                }
 
                 FindRelationships(containerInstance);
             }
@@ -283,6 +332,36 @@ namespace DsmSuite.Analyzer.C4.Analysis
                     _model.AddRelation(sourceElement.Name, destinationElement.Name, relationship.Description, 1, null);
                 }
             }
+        }
+
+        private string GetElementName(JsonElement element)
+        {
+            var id = element.GetProperty("id").GetString();
+            var name = element.TryGetProperty("name", out var nameElement) ? nameElement.GetString() : null;
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                return name;
+            }
+
+            if (element.TryGetProperty("properties", out var propertiesElement))
+            {
+                var identifier = propertiesElement.TryGetProperty("structurizr.dsl.identifier", out var identifierElement) ? identifierElement.GetString() : null;
+                if (identifier != null)
+                {
+                    if (string.IsNullOrWhiteSpace(name))
+                    {
+                        name = identifier;
+                    }
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                name = $"$Unnamed{id}";
+            }
+
+            return name;
         }
 
         public void Analyze()

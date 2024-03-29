@@ -49,34 +49,34 @@ namespace DsmSuite.Analyzer.C4.Test.Analysis
             var elementPermissionsController = model.FindElementByName("Software System.Web Application 2.Permissions Controller");
             Assert.IsNotNull(elementPermissionsController);
 
-            var elementDatabase1 = model.FindElementByName("Software System.Database 1");
+            var elementDatabase1 = model.FindElementByName("Software System.Database1");
             Assert.IsNotNull(elementDatabase1);
 
-            var elementDatabase2 = model.FindElementByName("Software System.Database 2");
+            var elementDatabase2 = model.FindElementByName("Software System.Database2");
             Assert.IsNotNull(elementDatabase2);
 
-            var elementWebserver1 = model.FindElementByName("Webserver 1");
+            var elementWebserver1 = model.FindElementByName("Deployments.Development.Web Server 1");
             Assert.IsNotNull(elementWebserver1);
 
-            var elementContainerInstance1 = model.FindElementByName("Webserver 1.$ContainerInstance24");
+            var elementContainerInstance1 = model.FindElementByName("Deployments.Development.Web Server 1.webapp1instance");
             Assert.IsNotNull(elementContainerInstance1);
 
-            var elementContainerInstance2 = model.FindElementByName("Webserver 1.$ContainerInstance25");
+            var elementContainerInstance2 = model.FindElementByName("Deployments.Development.Web Server 1.webapp2instance");
             Assert.IsNotNull(elementContainerInstance2);
 
-            var elementWebserver2 = model.FindElementByName("Webserver 2");
+            var elementWebserver2 = model.FindElementByName("Deployments.Development.Web Server 2");
             Assert.IsNotNull(elementWebserver2);
 
-            var elementContainerInstance3 = model.FindElementByName("Webserver 2.$ContainerInstance28");
+            var elementContainerInstance3 = model.FindElementByName("Deployments.Development.Web Server 2.webapp3instance");
             Assert.IsNotNull(elementContainerInstance3);
 
-            var elementDatabaseServer = model.FindElementByName("Database Server");
+            var elementDatabaseServer = model.FindElementByName("Deployments.Development.Database Server");
             Assert.IsNotNull(elementDatabaseServer);
 
-            var elementContainerInstance4 = model.FindElementByName("Webserver 2.$ContainerInstance30");
+            var elementContainerInstance4 = model.FindElementByName("Deployments.Development.Web Server 2.Redis Server");
             Assert.IsNotNull(elementContainerInstance4);
 
-            var elementContainerInstance5 = model.FindElementByName("Webserver 2.$ContainerInstance33");
+            var elementContainerInstance5 = model.FindElementByName("Deployments.Development.Web Server 2.webapp3instance");
             Assert.IsNotNull(elementContainerInstance5);
 
             // Main relations

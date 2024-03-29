@@ -22,6 +22,8 @@ workspace {
             }
             
             database2 = container "Database2"
+
+            redis1 = container "Redis1"
         }
 
         group "Backoffice users" {
@@ -41,14 +43,25 @@ workspace {
 
         # Deployment nodes
         deploymentEnvironment = deploymentEnvironment "Development" {
+            serviceInstance1 = deploymentGroup "Service instance 1"
+            serviceInstance2 = deploymentGroup "Service instance 2"
+
 			webServer1 = deploymentNode "Web Server 1" {
 				webapp1Instance = containerInstance webapp1
 				
 				webapp2Instance = containerInstance webapp2
+
+                deploymentNode "Redis Server" {
+					redis1Instance = containerInstance redis1 serviceInstance1
+                }
 			}
 			
 			webServer2 = deploymentNode "Web Server 2" {
 				webapp3Instance = containerInstance webapp3
+
+                deploymentNode "Redis Server" {
+					redis2Instance = containerInstance redis1 serviceInstance2
+                }
 			}
 			
 			databaseServer = deploymentNode "Database Server" {
@@ -56,8 +69,25 @@ workspace {
 				database2Instance = containerInstance database2
 			}
 		}
-        
-        
+
+        deploymentEnvironmentLive = deploymentEnvironment "Live" {
+			deploymentNode "Amazon Web Services" {
+                deploymentNode "US-East-1" {
+                    route53 = infrastructureNode "Route 53"
+                    elb = infrastructureNode "Elastic Load Balancer"
+
+                    deploymentNode "Amazon EC2" {
+						deploymentNode "Ubuntu Server" {
+							webapp1InstanceLive = containerInstance webapp1
+							redis1InstanceLive = containerInstance redis1
+						}
+					}
+                }
+            }
+
+            route53 -> elb "Forwards requests to" "HTTPS"
+            elb -> webapp1InstanceLive "Forwards requests to" "HTTPS"
+        }
     }
 
     views {

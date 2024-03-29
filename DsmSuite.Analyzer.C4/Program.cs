@@ -23,17 +23,17 @@ namespace DsmSuite.Analyzer.C4
         protected override bool CheckPrecondition()
         {
             bool result = true;
-            //if (!Directory.Exists(_analyzerSettings.Input.DotFileDirectory))
-            //{
-            //    result = false;
-            //    Logger.LogUserMessage($"Input directory '{_analyzerSettings.Input.DotFileDirectory}' does not exist.");
-            //}
+            if (!File.Exists(_analyzerSettings.Input.Workspace))
+            {
+                result = false;
+                Logger.LogUserMessage($"Input Workspace '{_analyzerSettings.Input.Workspace}' does not exist.");
+            }
             return result;
         }
 
         protected override void LogInputParameters()
         {
-            // Logger.LogUserMessage($"Input directory:{_analyzerSettings.Input.DotFileDirectory}");
+            Logger.LogUserMessage($"Input directory:{_analyzerSettings.Input.Workspace}");
         }
 
         protected override void Action()
@@ -70,6 +70,7 @@ namespace DsmSuite.Analyzer.C4
                 {
                     AnalyzerSettings.WriteToFile(settingsFileInfo.FullName, AnalyzerSettings.CreateDefault());
                     Logger.LogUserMessage("Settings file does not exist. Default one created");
+
                 }
                 else
                 {
