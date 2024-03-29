@@ -34,9 +34,17 @@ namespace DsmSuite.Analyzer.C4.Analysis
             {
                 var sourceId = relationship.GetProperty("sourceId").GetString();
                 var destinationId = relationship.GetProperty("destinationId").GetString();
-                var description = relationship.GetProperty("description").GetString();
+                var description = relationship.TryGetProperty("description", out var descriptionElement) ? descriptionElement.GetString() : null;
 
-                Logger.LogUserMessage($"Relationship: {sourceId} -> {destinationId} ({description})");
+                if (description == null)
+                {
+                    description = "Uses";
+                    Logger.LogUserMessage($"Relationship without description: {sourceId} -> {destinationId} ({description})");
+                }
+                else
+                {
+                    Logger.LogUserMessage($"Relationship: {sourceId} -> {destinationId} ({description})");
+                }
 
                 _relationships.Add(new C4Relationship { SourceId = sourceId, DestinationId = destinationId, Description = description });
             }
@@ -82,6 +90,12 @@ namespace DsmSuite.Analyzer.C4.Analysis
                 var id = softwareSystem.GetProperty("id").GetString();
                 var name = GetElementName(softwareSystem);
                 var type = softwareSystem.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "SoftwareSystem";
+                var group = softwareSystem.TryGetProperty("group", out var groupElement) ? groupElement.GetString() : null;
+
+                if (group != null)
+                {
+                    name = $"{group}.{name}";
+                }
 
                 if (parentName != null)
                 {
@@ -111,6 +125,15 @@ namespace DsmSuite.Analyzer.C4.Analysis
                 var id = container.GetProperty("id").GetString();
                 var name = GetElementName(container);
                 var type = container.TryGetProperty("type", out var typeElement) ? typeElement.GetString() : "Container";
+
+                // Groups can not be added as a relation in the model
+                // They only act as a partitioning mechanism
+                var group = container.TryGetProperty("group", out var groupElement) ? groupElement.GetString() : null;
+
+                if (group != null)
+                {
+                    name = $"{group}.{name}";
+                }
 
                 if (parentName != null)
                 {
