@@ -47,12 +47,15 @@ namespace DsmSuite.Analyzer.C4.Settings
             AnalyzerSettings analyzerSettings = new AnalyzerSettings
             {
                 LogLevel = LogLevel.Error,
-                Input = new InputSettings(),
+                Input = new InputSettings
+                {
+                    Workspace = "workspace.json",
+                },
                 Transformation = new TransformationSettings(),
                 Output = new OutputSettings(),
             };
 
-            analyzerSettings.Output.Filename = "Output.dsi";
+            analyzerSettings.Output.Filename = "workspace.dsi";
             analyzerSettings.Output.Compress = true;
             return analyzerSettings;
         }

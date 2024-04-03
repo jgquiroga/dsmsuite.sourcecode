@@ -15,6 +15,8 @@ namespace DsmSuite.Analyzer.C4.Test.Utils
             }
         }
 
-        public const string TestWorkspace1 = "workspace1.json";
+        public const string TestWorkspace1 = "01_simple/workspace.json";
+
+        public const string TestWorkspace2 = "workspace2.json";
     }
 }

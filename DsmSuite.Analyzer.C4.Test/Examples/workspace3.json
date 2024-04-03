@@ -1,0 +1,106 @@
+{
+  "configuration" : { },
+  "description" : "Description",
+  "documentation" : { },
+  "id" : 0,
+  "model" : {
+    "softwareSystems" : [ {
+      "containers" : [ {
+        "components" : [ {
+          "description" : "A wrapper around the log4j framework",
+          "documentation" : { },
+          "group" : "shared-library.jar",
+          "id" : "3",
+          "name" : "Logging Component",
+          "properties" : {
+            "structurizr.dsl.identifier" : "s.app1.loggingcomponent"
+          },
+          "tags" : "Element,Component,Shared Component",
+          "technology" : "Java"
+        }, {
+          "documentation" : { },
+          "id" : "4",
+          "name" : "Component",
+          "properties" : {
+            "structurizr.dsl.identifier" : "s.app1.c"
+          },
+          "relationships" : [ {
+            "description" : "Writes logs using",
+            "destinationId" : "3",
+            "id" : "5",
+            "properties" : {
+              "structurizr.dsl.identifier" : "b44c6e3b-40b8-45e6-82d5-097ac573fc3f"
+            },
+            "sourceId" : "4",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        } ],
+        "documentation" : { },
+        "id" : "2",
+        "name" : "Application 1",
+        "properties" : {
+          "structurizr.dsl.identifier" : "s.app1"
+        },
+        "tags" : "Element,Container"
+      }, {
+        "components" : [ {
+          "description" : "A wrapper around the log4j framework",
+          "documentation" : { },
+          "group" : "shared-library.jar",
+          "id" : "7",
+          "name" : "Logging Component",
+          "properties" : {
+            "structurizr.dsl.identifier" : "s.app2.loggingcomponent"
+          },
+          "tags" : "Element,Component,Shared Component",
+          "technology" : "Java"
+        }, {
+          "documentation" : { },
+          "id" : "8",
+          "name" : "Component",
+          "properties" : {
+            "structurizr.dsl.identifier" : "s.app2.c"
+          },
+          "relationships" : [ {
+            "description" : "Writes logs using",
+            "destinationId" : "7",
+            "id" : "9",
+            "properties" : {
+              "structurizr.dsl.identifier" : "c5b439d6-5039-4451-98bd-87b44f904048"
+            },
+            "sourceId" : "8",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        } ],
+        "documentation" : { },
+        "id" : "6",
+        "name" : "Application 2",
+        "properties" : {
+          "structurizr.dsl.identifier" : "s.app2"
+        },
+        "tags" : "Element,Container"
+      } ],
+      "documentation" : { },
+      "id" : "1",
+      "location" : "Unspecified",
+      "name" : "Software System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "s"
+      },
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "Name",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAgIHMgPSBzb2Z0d2FyZVN5c3RlbSAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgIGFwcDEgPSBjb250YWluZXIgIkFwcGxpY2F0aW9uIDEiIHsKICAgICAgICAgICAgICAgIGdyb3VwICJzaGFyZWQtbGlicmFyeS5qYXIiIHsKICAgICAgICAgICAgICAgICAgICBsb2dnaW5nQ29tcG9uZW50ID0gY29tcG9uZW50ICJMb2dnaW5nIENvbXBvbmVudCIgewogICAgICAgICAgICAgICAgICAgICAgICB0ZWNobm9sb2d5ICJKYXZhIgogICAgICAgICAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiQSB3cmFwcGVyIGFyb3VuZCB0aGUgbG9nNGogZnJhbWV3b3JrIgogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJTaGFyZWQgQ29tcG9uZW50IgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBjID0gY29tcG9uZW50ICJDb21wb25lbnQiIHsKICAgICAgICAgICAgICAgICAgICAtPiBsb2dnaW5nQ29tcG9uZW50ICJXcml0ZXMgbG9ncyB1c2luZyIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQoKICAgICAgICAgICAgYXBwMiA9IGNvbnRhaW5lciAiQXBwbGljYXRpb24gMiIgewogICAgICAgICAgICAgICAgZ3JvdXAgInNoYXJlZC1saWJyYXJ5LmphciIgewogICAgICAgICAgICAgICAgICAgIGxvZ2dpbmdDb21wb25lbnQgPSBjb21wb25lbnQgIkxvZ2dpbmcgQ29tcG9uZW50IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIkphdmEiCiAgICAgICAgICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJBIHdyYXBwZXIgYXJvdW5kIHRoZSBsb2c0aiBmcmFtZXdvcmsiCiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgIlNoYXJlZCBDb21wb25lbnQiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGMgPSBjb21wb25lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgICAgIC0+IGxvZ2dpbmdDb21wb25lbnQgIldyaXRlcyBsb2dzIHVzaW5nIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQoKICAgIHZpZXdzIHsKICAgIH0KICAgIAp9Cg=="
+  },
+  "views" : {
+    "configuration" : {
+      "branding" : { },
+      "styles" : { },
+      "terminology" : { }
+    }
+  }
+}
